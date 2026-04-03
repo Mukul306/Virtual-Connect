@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-textMain font-sans antialiased;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-textMain font-semibold tracking-tight;
+  }
+}
+
+/* Custom Utilities */
+@layer utilities {
+  .glass-panel {
+    @apply bg-white/90 backdrop-blur-md border border-accent shadow-sm;
+  }
+}
+
+/* Hide browser-native password reveal/clear icons (Edge, IE) */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none !important;
+}
+
+/* Ensure custom eye icons from our UI don't clash with any potential browser overrides */
+input[type="password"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
