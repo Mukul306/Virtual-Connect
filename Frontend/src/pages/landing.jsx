@@ -109,62 +109,70 @@ export default function LandingPage() {
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-black">
-                            Engineered for <span className="text-blue-600">Excellence</span>
+                            Bring Your Team Together, <span className="text-blue-600">Anywhere</span>
                         </h2>
                         <p className="text-black/40 text-lg font-medium max-w-xl mx-auto">
-                            Built with industry-standard protocols to ensure your communication is fast, secure, and clear.
+                            Built to ensure your communication is fast, secure, and clear.
                         </p>
                     </motion.div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4">
                         {[
                             {
                                 icon: Video,
-                                title: '4K Video Quality',
-                                desc: 'Experience lag-free streaming with our adaptive bitrate technology that scales with your connection.',
-                                gradient: 'from-blue-600 to-cyan-500',
-                                shadow: 'shadow-blue-200/50'
+                                title: 'Interactive Collaboration',
+                                desc: 'Beyond just video—engage with integrated real-time messaging, file sharing, and instant reactions. Collaboration isnt just talking; its doing, all in one place.',
+                                gradient: 'from-blue-500 via-cyan-400 to-blue-600',
+                                border: 'hover:border-blue-500/50'
                             },
                             {
                                 icon: Shield,
-                                title: 'Private by Design',
-                                desc: 'End-to-end encrypted rooms where your data never touches a server. Your privacy is our priority.',
-                                gradient: 'from-indigo-600 to-purple-500',
-                                shadow: 'shadow-indigo-200/50'
+                                title: 'Seamless Guest Access',
+                                desc: 'No account? No problem. Generate unique Meeting IDs and let guests join instantly through their browser. Experience high-performance collaboration without the friction of sign-ups.',
+                                gradient: 'from-yellow-400 to-orange-500',
+                                border: 'hover:border-purple-500/50'
                             },
                             {
                                 icon: Zap,
-                                title: 'WebRTC Powered',
-                                desc: 'Zero installation, zero latency. Connect instantly through your browser with the power of WebRTC.',
-                                gradient: 'from-purple-600 to-pink-500',
-                                shadow: 'shadow-purple-200/50'
+                                title: 'Browser-Native Power',
+                                desc: 'No downloads, no plugins, no hassle. Join meetings instantly from any modern browser. One click is all it takes to bridge the gap between you and your team.',
+                                gradient: 'from-orange-500 via-red-500 to-pink-500',
+                                border: 'hover:border-orange-500/50'
                             }
                         ].map((feature, i) => (
                             <motion.div
                                 key={i}
-                                initial={{ opacity: 0, y: 30 }}
+                                initial={{ opacity: 0, y: 40 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.15, duration: 0.5 }}
-                                whileHover={{ y: -12 }}
+                                transition={{ delay: i * 0.2, duration: 0.6, ease: "easeOut" }}
+                                whileHover={{ y: -15, scale: 1.02 }}
                                 viewport={{ once: true }}
-                                className="relative p-10 rounded-[40px] bg-gray-50/50 border border-black/[0.03] transition-all hover:bg-white hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] group"
+                                className={`relative p-8 rounded-[3rem] bg-white/70 backdrop-blur-xl border-2 border-transparent ${feature.border} transition-all duration-500 group shadow-sm hover:shadow-2xl overflow-hidden`}
                             >
-                                {/* Icon Container with dynamic gradient on hover */}
-                                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-500 bg-black text-white group-hover:bg-gradient-to-br ${feature.gradient} group-hover:${feature.shadow} group-hover:scale-110 group-hover:rotate-3`}>
-                                    <feature.icon size={30} strokeWidth={2.5} />
+                                {/* Background Accent Blur */}
+                                <div className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 blur-[80px] transition-opacity duration-700`} />
+
+                                {/* Icon Container */}
+                                <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center mb-8 transition-all duration-500 shadow-xl bg-slate-900 group-hover:shadow-none group-hover:rotate-[10deg]`}>
+                                    <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+                                    <feature.icon size={32} className="relative z-10 text-white group-hover:scale-110 transition-transform duration-500" />
                                 </div>
 
-                                <h3 className="text-3xl font-black mb-4 tracking-tight text-black group-hover:text-blue-600 transition-colors">
+                                {/* Content */}
+                                <h3 className="text-2xl font-black mb-4 tracking-tight text-slate-900">
                                     {feature.title}
                                 </h3>
 
-                                <p className="text-black/50 font-semibold leading-relaxed text-lg">
+                                <p className="text-slate-600 font-medium leading-relaxed text-base group-hover:text-slate-800 transition-colors">
                                     {feature.desc}
                                 </p>
 
-                                {/* Subtle arrow indicator that appears on hover */}
-                                <div className="mt-8 flex items-center gap-2 text-black opacity-0 group-hover:opacity-100 transition-all transform translate-x-[-10px] group-hover:translate-x-0 font-bold">
-                                    Learn more <ArrowRight size={18} />
+                                {/* Premium Button Indicator */}
+                                <div className="mt-10 flex items-center gap-3">
+                                    <div className={`h-[2px] w-0 group-hover:w-12 bg-gradient-to-r ${feature.gradient} transition-all duration-500`} />
+                                    <span className="text-sm font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-x-[-20px] group-hover:translate-x-0 transition-all duration-500 text-slate-900">
+                                        Explore Tech
+                                    </span>
                                 </div>
                             </motion.div>
                         ))}
