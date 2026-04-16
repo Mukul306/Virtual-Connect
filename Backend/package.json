@@ -9,8 +9,6 @@
     "start": "node src/app.js"
   },
   "keywords": [],
-  "author": "Vansh Saini",
-  "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
