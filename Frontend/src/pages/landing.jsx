@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Video, Shield, Users, Zap, ArrowRight, Sparkles } from 'lucide-react';
+import { Video, Shield, Users, Zap, ArrowRight, Sparkles, MousePointerClick, Share2, MessageSquare } from 'lucide-react';
 
 // Reuse logic from your first reference for consistency
 const containerVariants = {
@@ -28,7 +28,7 @@ export default function LandingPage() {
         <div className="min-h-screen bg-white text-black overflow-hidden font-sans">
 
             {/* --- Hero Section --- */}
-            <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
+            <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
                 {/* Background Decor (Orbs) */}
                 <motion.div
                     className="absolute top-20 right-[-5%] w-96 h-96 bg-blue-100/50 rounded-full blur-[100px]"
@@ -72,7 +72,7 @@ export default function LandingPage() {
                         variants={itemVariants}
                         className="text-lg sm:text-xl text-black/60 max-w-2xl mx-auto mb-12 leading-relaxed font-medium"
                     >
-                        Experience crystal clear video and total privacy. The simplest way to connect, collaborate, and build together from anywhere.
+                        Puraane tools ko chhodo. Virtual Connects ek aisa browser-based system hai jahan na koi download chahiye, na koi account. Bas ek link create karo aur instant 4K quality mein apne team se jud jao 
                     </motion.p>
 
                     {/* Action Buttons */}
@@ -82,7 +82,7 @@ export default function LandingPage() {
                             className="group relative w-full sm:w-auto px-10 py-5 bg-black text-white rounded-2xl font-black text-lg transition-all hover:scale-105 active:scale-95 shadow-2xl"
                         >
                             <span className="flex items-center justify-center gap-2">
-                                Get Started for Free <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                Start Meeting Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </span>
                         </button>
                         <button
@@ -95,9 +95,71 @@ export default function LandingPage() {
                 </motion.div>
             </section>
 
-            {/* --- Features Section (Improved) --- */}
+            {/* --- How It Works Section (Now placed below Hero actions) --- */}
+            <section id="how-it-works" className="py-24 px-6 bg-slate-50/50">
+                <div className="max-w-7xl mx-auto">
+                    <motion.div 
+                        className="text-center mb-20"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        <h2 className="text-4xl md:text-5xl font-black tracking-tight mb-4">Three Steps to Connect</h2>
+                        <p className="text-black/40 text-lg font-medium">No complexity, just instant communication.</p>
+                    </motion.div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                        {/* Connecting Line (Desktop) */}
+                        <div className="hidden md:block absolute top-1/4 left-0 w-full h-[2px] bg-black/5 -z-0" />
+                        
+                        {[
+                            { 
+                                step: "01", 
+                                title: "Create Meeting", 
+                                desc: "Click 'Start Meeting' to generate your unique, encrypted room instantly.",
+                                icon: MousePointerClick,
+                                color: "text-blue-600",
+                                bg: "bg-blue-50"
+                            },
+                            { 
+                                step: "02", 
+                                title: "Share the Link", 
+                                desc: "Copy the URL and send it to your team. No logins required for guests.",
+                                icon: Share2,
+                                color: "text-indigo-600",
+                                bg: "bg-indigo-50"
+                            },
+                            { 
+                                step: "03", 
+                                title: "Start Talking", 
+                                desc: "Enjoy 4K video, screen sharing, and real-time chat in your browser.",
+                                icon: MessageSquare,
+                                color: "text-purple-600",
+                                bg: "bg-purple-50"
+                            }
+                        ].map((item, i) => (
+                            <motion.div 
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.2 }}
+                                className="relative z-10 bg-white p-10 rounded-[2.5rem] border border-black/5 shadow-sm hover:shadow-xl transition-shadow group"
+                            >
+                                <div className={`w-16 h-16 ${item.bg} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500`}>
+                                    <item.icon className={`w-8 h-8 ${item.color}`} />
+                                </div>
+                                <span className={`text-sm font-black uppercase tracking-widest ${item.color} mb-2 block`}>Step {item.step}</span>
+                                <h3 className="text-2xl font-black mb-4 tracking-tight">{item.title}</h3>
+                                <p className="text-black/50 font-medium leading-relaxed">{item.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* --- Features Section --- */}
             <section id="features" className="relative py-32 px-6 bg-white overflow-hidden">
-                {/* Background subtle mesh or grid - Optional visual depth */}
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
 
                 <div className="max-w-7xl mx-auto relative z-10">
@@ -149,16 +211,13 @@ export default function LandingPage() {
                                 viewport={{ once: true }}
                                 className={`relative p-8 rounded-[3rem] bg-white/70 backdrop-blur-xl border-2 border-transparent ${feature.border} transition-all duration-500 group shadow-sm hover:shadow-2xl overflow-hidden`}
                             >
-                                {/* Background Accent Blur */}
                                 <div className={`absolute -top-24 -right-24 w-48 h-48 bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-10 blur-[80px] transition-opacity duration-700`} />
 
-                                {/* Icon Container */}
                                 <div className={`w-20 h-20 rounded-[2rem] flex items-center justify-center mb-8 transition-all duration-500 shadow-xl bg-slate-900 group-hover:shadow-none group-hover:rotate-[10deg]`}>
                                     <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
                                     <feature.icon size={32} className="relative z-10 text-white group-hover:scale-110 transition-transform duration-500" />
                                 </div>
 
-                                {/* Content */}
                                 <h3 className="text-2xl font-black mb-4 tracking-tight text-slate-900">
                                     {feature.title}
                                 </h3>
@@ -167,7 +226,6 @@ export default function LandingPage() {
                                     {feature.desc}
                                 </p>
 
-                                {/* Premium Button Indicator */}
                                 <div className="mt-10 flex items-center gap-3">
                                     <div className={`h-[2px] w-0 group-hover:w-12 bg-gradient-to-r ${feature.gradient} transition-all duration-500`} />
                                     <span className="text-sm font-black uppercase tracking-widest opacity-0 group-hover:opacity-100 transform translate-x-[-20px] group-hover:translate-x-0 transition-all duration-500 text-slate-900">
